@@ -1,5 +1,6 @@
 {
   "files.autoSave": "afterDelay",
   "editor.wordWrap": "on",
-  "files.autoSaveDelay": 15000
+  "files.autoSaveDelay": 15000,
+  "cSpell.words": ["todos"]
 }

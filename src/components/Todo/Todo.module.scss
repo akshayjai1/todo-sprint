@@ -1,0 +1,17 @@
+.todo {
+  min-width: 50%;
+  background-color: #fff;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.title {
+  margin: 30px 20px;
+}
+.controlContainer {
+}
+.actionContainer {
+  display: flex;
+  margin: 30px 20px;
+  justify-content: space-between;
+}

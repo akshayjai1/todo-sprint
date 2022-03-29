@@ -1,18 +1,21 @@
 import './App.scss';
 import { Card } from '../components/Card/Card';
-
-function App() {
+import { Routes, Route, NavLink } from 'react-router-dom';
+import { Home } from '../components/Home/Home';
+import { Button } from '../components/Button/Button';
+export function App() {
   return (
     <div className="app">
-      <h1>todo app</h1>
+      <h1>To Do App</h1>
+      <Button text="Add" />
       <div></div>
-      <Card title="routine" content={null} />
-      <Card title="routine" content={null} />
-      <Card title="routine" content={null} />
-      <Card title="routine" content={null} />
-      <Card title="routine" content={null} />
+      <Routes>
+        <Route path="/reminders" element={<Home />} />
+        <Route path="/routine" element={<Home />} />
+        <Route path="/reminders" element={<Home />} />
+        <Route path="/all" element={<Home />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
     </div>
   );
 }
-
-export default App;

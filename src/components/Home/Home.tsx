@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../shared/store';
 import { ITodo } from '../../shared/todoSlice';
@@ -6,6 +7,7 @@ import { TodoRow } from '../TodoRow/TodoRow';
 
 import style from './Home.module.scss';
 export const Home = () => {
+  const navigate = useNavigate();
   const { todos } = useSelector((state: RootState) => state)['todo'];
   return (
     <div className={style.home}>
@@ -16,6 +18,9 @@ export const Home = () => {
         ))}
         cardClass="all"
         count={todos.length}
+        onViewAllClick={() => {
+          navigate('/all-todos');
+        }}
       />
       <Card title="Assigned to you" content={null} cardClass="assigned" />
       <Card title="Created by you" content={null} cardClass="created" />

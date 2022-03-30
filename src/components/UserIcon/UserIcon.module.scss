@@ -7,24 +7,33 @@
   min-height: 18px;
   min-width: 18px;
 }
+@mixin circle($number) {
+  width: $number;
+  height: $number;
+  border-radius: $number;
+}
+
 .userOption {
   display: flex;
   justify-content: flex-start;
   padding: 2px;
 
   div:first-child {
-    padding: 8px;
+    padding: 2px;
     margin: 5px 20px 5px 5px;
     display: flex;
+    align-items: center;
     justify-content: center; // to show the initials in middle
+    @include circle(36px);
   }
 }
 .invert {
   flex-direction: row-reverse;
 }
 .initialsIcon {
-  padding: 8px;
+  padding: 2px;
   margin: 5px 20px 5px 5px;
+  @include circle(36px);
   display: flex;
   justify-content: center; // to show the initials in middle
 }

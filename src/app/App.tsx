@@ -8,6 +8,7 @@ import { Plus } from '../images/Plus';
 import { UserOption } from '../components/UserIcon/UserIcon';
 import Person from '../images/person.png';
 import { users } from '../data/users';
+import { TodoList } from '../components/TodoList/TodoList';
 export function App() {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -39,7 +40,7 @@ export function App() {
         <Route path="/reminders" element={<Home />} />
         <Route path="/add" element={<Todo />} />
         <Route path="/edit" element={<Todo edit />} />
-        <Route path="/all" element={<Home />} />
+        <Route path="/all-todos" element={<TodoList />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </div>

@@ -3,7 +3,7 @@ import { Card } from './Card';
 
 test('render card', () => {
   const { container } = render(<Card title="title" content={null} />);
-  expect(container.firstElementChild?.className).toEqual('card');
+  expect(container.firstElementChild?.className).toContain('card');
 });
 test('check the hr element', () => {
   const { container } = render(<Card title="title" content={null} />);

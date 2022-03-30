@@ -1,4 +1,5 @@
 import { Button } from '../Button/Button';
+import style from './RowAction.module.scss';
 interface IpRowAction {
   text: string;
   actionText: string;
@@ -6,8 +7,8 @@ interface IpRowAction {
 }
 export const RowAction = ({ text, actionText, onClick }: IpRowAction) => {
   return (
-    <div>
-      <div>{text}</div>
+    <div className={style.rowAction}>
+      <div className={style.text}>{text}</div>
       <div>
         <Button text={actionText} onClick={onClick} />
       </div>

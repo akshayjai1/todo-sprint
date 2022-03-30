@@ -1,0 +1,23 @@
+.icon {
+  background-color: orange;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 20px;
+  min-height: 18px;
+  min-width: 18px;
+}
+.userOption {
+  display: flex;
+  justify-content: flex-start;
+  padding: 2px;
+  div:first-child {
+    padding: 8px;
+    margin: 5px 20px 5px 5px;
+    display: flex;
+    justify-content: center; // to show the initials in middle
+  }
+}
+.userOptionName {
+  padding: 13px 0;
+}

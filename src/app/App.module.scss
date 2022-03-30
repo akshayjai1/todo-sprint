@@ -2,7 +2,12 @@
   display: flex;
   margin: 0 auto;
   width: 50%;
-  border: 1px solid;
   justify-content: space-between;
   padding: 10px 30px;
+}
+.user {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 14px;
 }

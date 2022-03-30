@@ -9,7 +9,7 @@ test('renders label', () => {
       todo={{
         id: '1',
         text: 'Dummy todo',
-        priority: EPriority.low,
+        priority: EPriority.Low,
         assignee: '2',
         creator: '3',
         status: false,
@@ -25,7 +25,7 @@ test('renders Children', () => {
       todo={{
         id: '1',
         text: 'Dummy todo',
-        priority: EPriority.low,
+        priority: EPriority.Low,
         assignee: '2',
         creator: '3',
         status: false,

@@ -5,6 +5,8 @@
   min-height: 400px;
   margin: 20px;
   padding: 10px;
+  display: grid;
+  grid-template-rows: 50px 1px auto 50px;
 }
 hr {
   border-top: 1px solid hsl(0, 0, 93%, 1);
@@ -13,4 +15,23 @@ hr {
   font-weight: bold;
   font-size: 1.2rem;
   padding: 0.6rem;
+}
+.footer {
+  display: grid;
+  grid-template-columns: 180px auto 140px;
+  grid-template-areas: 'more auto viewAll';
+}
+.moreContent {
+  margin-top: 20px;
+  padding: 3px 1rem;
+  grid-area: more;
+}
+.viewAll {
+  grid-area: viewAll;
+  display: flex;
+  justify-content: flex-end;
+  padding: 3px 1rem;
+  cursor: pointer;
+  margin-top: 20px;
+  color: hsla(288, 100%, 68%, 1);
 }

@@ -1,20 +1,41 @@
 .todoRow {
   display: grid;
-  grid-template-columns: 20px 50px auto;
+  grid-template-columns: 30px 50px auto;
   grid-template-rows: auto auto;
   grid-template-areas:
     'check text text'
     'check priority assignee';
+  padding: 0.6rem;
 }
 .check {
   grid-area: check;
+  padding-top: 16px;
 }
 .text {
   grid-area: text;
+  padding: 15px 5px;
 }
 .priority {
   grid-area: priority;
+  padding: 6px 12px;
+  border-radius: 8px;
+  align-self: center;
+  display: flex;
 }
 .assignee {
+  display: flex;
+  justify-content: flex-end;
   grid-area: assignee;
+}
+.low {
+  color: hsla(184, 67%, 38%, 1);
+  background: hsla(195, 100%, 95%, 1);
+}
+.medium {
+  color: hsla(133, 66%, 33%, 1);
+  background: hsla(155, 100%, 91%, 1);
+}
+.high {
+  color: hsla(356, 100%, 45%, 1);
+  background-color: hsla(346, 81%, 92%, 1);
 }

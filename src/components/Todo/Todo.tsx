@@ -16,8 +16,8 @@ interface IpTodo {
 export const Todo = ({ edit = false }: IpTodo) => {
   const [todoText, setTodoText] = useState('');
   const [priority, setPriority] = useState<ILabelValue<EPriority>>({
-    label: EPriority.low,
-    value: EPriority.low,
+    label: EPriority.Low,
+    value: EPriority.Low,
   });
   // const [priority, setPriority] = useState({ label: '', value: '' });
   const [dueDate, setDueDate] = useState('');

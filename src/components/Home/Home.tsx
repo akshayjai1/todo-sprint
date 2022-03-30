@@ -11,10 +11,11 @@ export const Home = () => {
     <div className={style.home}>
       <Card
         title="All todos"
-        content={todos.map((t: ITodo) => (
+        content={todos.slice(0, 3).map((t: ITodo) => (
           <TodoRow todo={t} key={t.id} />
         ))}
         cardClass="all"
+        count={todos.length}
       />
       <Card title="Assigned to you" content={null} cardClass="assigned" />
       <Card title="Created by you" content={null} cardClass="created" />

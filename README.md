@@ -6,3 +6,4 @@ In the project directory, you can run:
 
 npm start
 
+The project is hosted at https://todo-sprint.surge.sh

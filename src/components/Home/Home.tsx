@@ -1,9 +1,21 @@
+import { useSelector } from 'react-redux';
+import { RootState } from '../../shared/store';
+import { ITodo } from '../../shared/todoSlice';
 import { Card } from '../Card/Card';
+import { TodoRow } from '../TodoRow/TodoRow';
+
 import style from './Home.module.scss';
 export const Home = () => {
+  const { todos } = useSelector((state: RootState) => state)['todo'];
   return (
     <div className={style.home}>
-      <Card title="All todos" content={null} cardClass="all" />
+      <Card
+        title="All todos"
+        content={todos.map((t: ITodo) => (
+          <TodoRow todo={t} key={t.id} />
+        ))}
+        cardClass="all"
+      />
       <Card title="Assigned to you" content={null} cardClass="assigned" />
       <Card title="Created by you" content={null} cardClass="created" />
       <Card title="Reminders" content={null} cardClass="reminder" />

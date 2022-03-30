@@ -2,14 +2,17 @@ import style from './App.module.scss';
 import { Routes, Route, NavLink, useLocation } from 'react-router-dom';
 import { Home } from '../components/Home/Home';
 import { Button } from '../components/Button/Button';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Todo } from '../components/Todo/Todo';
 import { Plus } from '../images/Plus';
 import { UserOption } from '../components/UserIcon/UserIcon';
 import Person from '../images/person.png';
+import { users } from '../data/users';
 export function App() {
   const dispatch = useDispatch();
   const location = useLocation();
+  const state = useSelector((state) => state);
+  console.log(state, 'state');
   console.log('o', location);
   return (
     <div className="app">
@@ -23,7 +26,7 @@ export function App() {
         <div className={style.user}>
           <UserOption
             invert
-            name="Simona Williams"
+            name={users[8].name}
             icon={<img src={Person} width="36" height="36" />}
           />
         </div>

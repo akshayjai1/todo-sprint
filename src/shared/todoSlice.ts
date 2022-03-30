@@ -1,35 +1,45 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-enum EPriority {
+export enum EPriority {
   low = 'low',
   medium = 'medium',
   high = 'high',
 }
-interface User {
+export interface IUser {
   id: string;
   name: string;
 }
-interface Todo {
+export interface ITodo {
   id: string;
   text: string;
   status: boolean; //false = pending, true = done
-  assignee: User;
-  creator: User;
+  assignee?: string | null; // id from User interface
+  creator: string;
   dueDate: string;
-  priority: 'low' | 'medium' | 'high';
+  priority: EPriority;
 }
 export interface TodoState {
-  todos: Todo[];
+  todos: ITodo[];
 }
 
 const initialState: TodoState = {
-  todos: [],
+  todos: [
+    {
+      id: '1',
+      text: 'Dummy todo',
+      priority: EPriority.low,
+      assignee: '2',
+      creator: '3',
+      status: false,
+      dueDate: '',
+    },
+  ],
 };
 
 export const todoSlice = createSlice({
   name: 'todo',
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<Todo>) => {
+    add: (state, action: PayloadAction<ITodo>) => {
       state.todos.push(action.payload);
     },
     remove: (state, action: PayloadAction<string>) => {
@@ -38,7 +48,7 @@ export const todoSlice = createSlice({
         state.todos.splice(index, 1);
       }
     },
-    edit: (state, action: PayloadAction<Todo>) => {
+    edit: (state, action: PayloadAction<ITodo>) => {
       let index = state.todos.findIndex(
         (todo) => todo.id === action.payload.id,
       );

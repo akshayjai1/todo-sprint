@@ -6,12 +6,17 @@
   padding: 20px;
 }
 .title {
-  margin: 30px 20px;
+  margin: 0px 20px 20px;
 }
 .controlContainer {
 }
 .actionContainer {
   display: flex;
+  // padding: 0 10px;
   margin: 30px 20px;
   justify-content: space-between;
+}
+hr {
+  width: 93%;
+  margin: 0 auto;
 }

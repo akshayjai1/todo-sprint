@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { EPriority } from '../../shared/todoSlice';
+import {EPriority} from '../../data/priority';
 
 import { TodoRow } from './TodoRow';
 

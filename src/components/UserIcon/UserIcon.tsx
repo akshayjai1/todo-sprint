@@ -7,7 +7,7 @@ interface IpUserIcon {
   invert?: boolean;
 }
 export const UserIcon = ({ name }: IpUserIcon) => {
-  return <div className={classes.icon}>{getInitials(name)}</div>;
+  return <div className={classes.initialsIcon}>{getInitials(name)}</div>;
 };
 export const UserOption = ({ name, icon, invert = false }: IpUserIcon) => {
   return (

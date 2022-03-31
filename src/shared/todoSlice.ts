@@ -1,9 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-export enum EPriority {
-  Low = 'Low',
-  Medium = 'Medium',
-  High = 'High',
-}
+import { EPriority } from '../data/priority';
+import { todosData } from '../data/todosData';
+
 export interface IUser {
   id: string;
   name: string;
@@ -22,71 +20,7 @@ export interface TodoState {
 }
 
 const initialState: TodoState = {
-  todos: [
-    {
-      id: '1',
-      text: 'Dummy todo',
-      priority: EPriority.Low,
-      assignee: '2',
-      creator: '3',
-      status: false,
-      dueDate: '',
-    },
-    {
-      id: '2',
-      text: 'Dummy todo',
-      priority: EPriority.Low,
-      assignee: '2',
-      creator: '3',
-      status: false,
-      dueDate: '',
-    },
-    {
-      id: '3',
-      text: 'Dummy todo',
-      priority: EPriority.Low,
-      assignee: '2',
-      creator: '3',
-      status: false,
-      dueDate: '',
-    },
-    {
-      id: '4',
-      text: 'Dummy todo',
-      priority: EPriority.Low,
-      assignee: '2',
-      creator: '3',
-      status: false,
-      dueDate: '',
-    },
-    {
-      id: '7',
-      text: 'Dummy todo',
-      priority: EPriority.Low,
-      assignee: '2',
-      creator: '3',
-      status: false,
-      dueDate: '',
-    },
-    {
-      id: '8',
-      text: 'Dummy todo',
-      priority: EPriority.Low,
-      assignee: '2',
-      creator: '3',
-      status: false,
-      dueDate: '',
-    },
-    {
-      id: '9',
-      text: 'Dummy todo',
-      priority: EPriority.Low,
-      assignee: '2',
-      creator: '3',
-      status: false,
-      dueDate: '',
-    },
-  ],
+  todos: todosData,
 };
 
 export const todoSlice = createSlice({

@@ -1,8 +1,17 @@
 .row {
   display: grid;
-  grid-template-columns: 30px auto 100px 100px 100px 100px 100px;
+  grid-template-columns: 30px auto 90px 120px 90px 90px 60px;
+  grid-column-gap: 20px;
   padding: 12px;
+  align-items: center;
 }
 .headerRow {
   font-size: 13px;
+  border-bottom: 1px solid hsla(0, 0%, 93%, 1);
+}
+.action {
+  display: grid;
+  grid-template-columns: 40px auto;
+  align-items: center;
+  cursor: pointer;
 }

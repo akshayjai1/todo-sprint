@@ -14,7 +14,7 @@ export const ListCard = ({
   cardClass = '',
 }: IpListCard) => {
   return (
-    <div className={`${style.card} ${style.listCard} ${cardClass}`}>
+    <div className={`${style.listCard} ${cardClass}`}>
       <div className={style.title}>{title}</div>
       <div>{children}</div>
       <div className={style.footer}></div>

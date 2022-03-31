@@ -1,15 +1,16 @@
 import { users } from '../../data/users';
-import { EPriority, ITodo } from '../../shared/todoSlice';
+import { ITodo } from '../../shared/todoSlice';
 import style from './TodoRow.module.scss';
 import { Square } from './../../images/Square';
 import { UserOption } from '../UserIcon/UserIcon';
+import { getName } from '../../shared/util';
+import { EPriority } from '../../data/priority';
 interface IpTodoRow {
   todo: ITodo;
 }
+
 export const TodoRow = ({ todo }: IpTodoRow) => {
-  const name: string = todo.assignee
-    ? users.find((u) => u.id === todo.assignee)?.name ?? ''
-    : '';
+  const name: string = getName(todo?.assignee ?? '', users);
   console.log('todo', todo);
   return (
     <div className={style.todoRow}>
@@ -17,7 +18,7 @@ export const TodoRow = ({ todo }: IpTodoRow) => {
         <Square />
       </div>
       <div className={style.text}>{todo.text}</div>
-      <div className={`${style.priority} ${getPriorityClass(todo.priority)}`}>
+      <div className={`${getPriorityClass(todo.priority)}`}>
         {todo.priority}
       </div>
       <div className={style.assignee}>
@@ -27,7 +28,7 @@ export const TodoRow = ({ todo }: IpTodoRow) => {
   );
 };
 
-const getPriorityClass = (priority: EPriority) => {
+export const getPriorityClass = (priority: EPriority) => {
   if (priority === EPriority.Low) {
     return style.low;
   } else if (priority === EPriority.Medium) {

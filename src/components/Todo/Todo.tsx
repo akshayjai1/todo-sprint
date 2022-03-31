@@ -1,15 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import ReactSelect from 'react-select';
-import { ILabelValue, priorities } from '../../data/priority';
+import DatePicker from 'react-date-picker';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { EPriority, ILabelValue, priorities } from '../../data/priority';
 import { users } from '../../data/users';
 import { Plus } from '../../images/Plus';
-import { add, EPriority } from '../../shared/todoSlice';
+import { add, IUser } from '../../shared/todoSlice';
 import { Button } from '../Button/Button';
 import { Control } from '../Control/Control';
 import { RowAction } from '../RowAction/RowAction';
 import { UserOption } from '../UserIcon/UserIcon';
 import style from './Todo.module.scss';
+import { todosData } from '../../data/todosData';
 interface IpTodo {
   edit?: boolean;
 }
@@ -20,11 +23,27 @@ export const Todo = ({ edit = false }: IpTodo) => {
     value: EPriority.Low,
   });
   // const [priority, setPriority] = useState({ label: '', value: '' });
-  const [dueDate, setDueDate] = useState('');
+  const [dueDate, setDueDate] = useState(new Date());
   const [assignee, setAssignee] = useState<ILabelValue<JSX.Element> | null>(
     null,
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const params = useParams();
+  console.log('navigate', location, params);
+  useEffect(() => {
+    if (edit && params?.id) {
+      const todo = todosData.find((todo) => todo.id === params.id);
+      if (todo) {
+        setTodoText(todo.text);
+        setPriority({ label: todo.priority, value: todo.priority });
+        setDueDate(new Date(todo.dueDate));
+        setAssignee(getUserOption(users.find((u) => u.id === todo.assignee))); //TODO:need to handle null case
+      }
+    }
+  }, []);
+
   return (
     <div className={style.todo}>
       <h2 className={style.title}>{edit ? 'Edit' : 'Add'} Todo</h2>
@@ -50,12 +69,11 @@ export const Todo = ({ edit = false }: IpTodo) => {
           />
         </Control>
         <Control label="Due date">
-          <input
-            type="date"
-            placeholder="Today"
+          <DatePicker
+            // placeholder="Today"
             value={dueDate}
-            onChange={(e) => {
-              setDueDate(e.target.value);
+            onChange={(e: any) => {
+              setDueDate(e);
             }}
           />
         </Control>
@@ -63,10 +81,7 @@ export const Todo = ({ edit = false }: IpTodo) => {
           <ReactSelect
             isClearable
             value={assignee}
-            options={users?.map((u) => ({
-              label: <UserOption name={u.name} />,
-              value: u.id,
-            }))}
+            options={users?.map(getUserOption)}
             name="assignee"
             onChange={(e) => {
               setAssignee(e);
@@ -86,10 +101,11 @@ export const Todo = ({ edit = false }: IpTodo) => {
                 status: false,
                 assignee: assignee?.value,
                 creator: users[8].id,
-                dueDate,
+                dueDate: dueDate?.toLocaleDateString() ?? '',
                 priority: priority.label,
               }),
             );
+            navigate('/all-todos');
           }}
           icon={<Plus />}
         />
@@ -112,4 +128,14 @@ export const Todo = ({ edit = false }: IpTodo) => {
       )}
     </div>
   );
+};
+
+const getUserOption = (user?: IUser) => {
+  // if (!user) {
+  //   return null;
+  // }
+  return {
+    label: <UserOption name={user?.name ?? ''} />,
+    value: user?.id ?? '',
+  };
 };

@@ -39,7 +39,7 @@ export function App() {
         <Route path="/routine" element={<Home />} />
         <Route path="/reminders" element={<Home />} />
         <Route path="/add" element={<Todo />} />
-        <Route path="/edit" element={<Todo edit />} />
+        <Route path="/edit/:id" element={<Todo edit />} />
         <Route path="/all-todos" element={<TodoList />} />
         <Route path="/" element={<Home />} />
       </Routes>

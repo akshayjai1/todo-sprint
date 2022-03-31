@@ -94,6 +94,7 @@ export const Todo = ({ edit = false }: IpTodo) => {
       <div className={style.actionContainer}>
         <Button
           text="Cancel"
+          grayish
           onClick={() => {
             navigate('/all-todos');
           }}

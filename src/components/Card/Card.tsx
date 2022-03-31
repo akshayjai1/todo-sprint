@@ -17,7 +17,13 @@ export const Card = ({
     <div className={`${style.card} ${cardClass ?? ''}`}>
       <div className={style.title}>{title}</div>
       <hr className={style.hr} data-testid="card-title-hr" />
-      <div>{content}</div>
+      <div>
+        {content ? (
+          content
+        ) : (
+          <div className={style.noContent}>-- Nothing to show --</div>
+        )}
+      </div>
       <div className={style.footer}>
         {count > 3 ? (
           <div className={style.moreContent}>{count - 3} more todos</div>

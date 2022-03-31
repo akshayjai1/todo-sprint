@@ -25,6 +25,8 @@ hr {
   font-weight: bold;
   font-size: 1.2rem;
   padding: 0.6rem;
+  display: flex;
+  align-items: center;
 }
 .footer {
   display: grid;
@@ -44,4 +46,11 @@ hr {
   cursor: pointer;
   margin-top: 20px;
   color: hsla(288, 100%, 68%, 1);
+}
+.noContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  place-content: center;
+  place-items: center;
 }

@@ -15,9 +15,13 @@ export const Home = () => {
   const header = (
     <div className={style.header}>
       <div className={style.title}>All Todos</div>
-      <Link to="/add">
-        <Button text="Add" icon={<Plus />} />
-      </Link>
+      <Button
+        text="Add"
+        icon={<Plus />}
+        onClick={() => {
+          navigate('/add');
+        }}
+      />
     </div>
   );
   return (

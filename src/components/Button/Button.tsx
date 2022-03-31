@@ -4,13 +4,21 @@ interface IpButton {
   text: string;
   icon?: any;
   onClick?: (event: any) => void;
+  grayish?: boolean;
 }
-export const Button = ({ buttonClass = '', icon, text, onClick }: IpButton) => {
+export const Button = ({
+  buttonClass = '',
+  icon,
+  text,
+  onClick,
+  grayish = false,
+}: IpButton) => {
   return (
-    <button className={`${buttonClass} ${style.button}`} onClick={onClick}>
-      {icon ? icon : null}
-      {` `}
-      {text}
-    </button>
+    <div
+      className={`${buttonClass} ${grayish ? style.grayBtn : ''} ${style.btn}`}
+      onClick={onClick}>
+      {icon ? <span className={style.btnIcon}>{icon}</span> : null}
+      <span>{text}</span>
+    </div>
   );
 };

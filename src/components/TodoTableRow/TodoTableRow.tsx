@@ -7,7 +7,7 @@ import { getName } from '../../shared/util';
 import { getPriorityClass } from '../TodoRow/TodoRow';
 import { UserIcon } from '../UserIcon/UserIcon';
 import style from './TodoTableRow.module.scss';
-import todoStyle from '../TodoRow/TodoRow.module.scss';
+// import todoStyle from '../TodoRow/TodoRow.module.scss';
 interface IpTodoTableRow {
   todo: ITodo;
 }
@@ -19,8 +19,7 @@ export const TodoTableRow = ({ todo }: IpTodoTableRow) => {
         <Square />
       </div>
       <div className={style.a}>{todo.text}</div>
-      <div
-        className={`${todoStyle.priority} ${getPriorityClass(todo.priority)}`}>
+      <div className={`${style.priority} ${getPriorityClass(todo.priority)}`}>
         {todo.priority}
       </div>
       <div className={style.a}>{todo.dueDate}</div>

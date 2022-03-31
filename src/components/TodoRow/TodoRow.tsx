@@ -18,7 +18,7 @@ export const TodoRow = ({ todo }: IpTodoRow) => {
         <Square />
       </div>
       <div className={style.text}>{todo.text}</div>
-      <div className={`${getPriorityClass(todo.priority)}`}>
+      <div className={`${style.priority} ${getPriorityClass(todo.priority)}`}>
         {todo.priority}
       </div>
       <div className={style.assignee}>

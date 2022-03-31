@@ -6,7 +6,7 @@ import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { EPriority, ILabelValue, priorities } from '../../data/priority';
 import { users } from '../../data/users';
 import { Plus } from '../../images/Plus';
-import { add, IUser } from '../../shared/todoSlice';
+import { add, IUser, update } from '../../shared/todoSlice';
 import { Button } from '../Button/Button';
 import { Control } from '../Control/Control';
 import { RowAction } from '../RowAction/RowAction';
@@ -90,12 +90,18 @@ export const Todo = ({ edit = false }: IpTodo) => {
         </Control>
       </div>
       <div className={style.actionContainer}>
-        <Button text="Cancel" onClick={() => {}} />
+        <Button
+          text="Cancel"
+          onClick={() => {
+            navigate('/all-todos');
+          }}
+        />
         <Button
           text={edit ? 'Save Change' : 'Add'}
           onClick={() => {
+            let fn = edit ? update : add;
             dispatch(
-              add({
+              fn({
                 id: Date.now() + '',
                 text: todoText,
                 status: false,

@@ -19,11 +19,6 @@ export function App() {
     <div className="app">
       <h1 className={style.header}>
         <NavLink to="/"> To Do App</NavLink>
-        {location.pathname === '/' ? (
-          <NavLink to="add">
-            <Button text="Add" icon={<Plus />} />
-          </NavLink>
-        ) : null}
         <div className={style.user}>
           <UserOption
             invert

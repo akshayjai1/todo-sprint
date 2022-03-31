@@ -7,3 +7,11 @@
     'all assigned created'
     'all reminder routine';
 }
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+.title {
+  align-items: center;
+  display: flex;
+}

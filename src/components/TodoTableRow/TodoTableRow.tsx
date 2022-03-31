@@ -7,7 +7,6 @@ import { getName } from '../../shared/util';
 import { getPriorityClass } from '../TodoRow/TodoRow';
 import { UserIcon } from '../UserIcon/UserIcon';
 import style from './TodoTableRow.module.scss';
-// import todoStyle from '../TodoRow/TodoRow.module.scss';
 interface IpTodoTableRow {
   todo: ITodo;
 }

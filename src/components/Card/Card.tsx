@@ -1,6 +1,6 @@
 import style from './Card.module.scss';
 interface IpCard {
-  title: string;
+  title: string | JSX.Element;
   content: any;
   cardClass?: string;
   onViewAllClick?(e: any): void;

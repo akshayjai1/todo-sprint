@@ -3,7 +3,7 @@ import style from './Card.module.scss';
 interface IpListCard {
   onEditClick?: any;
   cardClass?: string;
-  title?: string;
+  title?: string | JSX.Element;
   children: any;
 }
 export const ListCard = ({

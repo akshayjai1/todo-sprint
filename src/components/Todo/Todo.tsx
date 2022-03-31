@@ -58,6 +58,7 @@ export const Todo = ({ edit = false }: IpTodo) => {
         </Control>
         <Control label="Priority">
           <ReactSelect
+            id="priority"
             name="priority"
             isClearable={false}
             value={priority}
@@ -79,6 +80,7 @@ export const Todo = ({ edit = false }: IpTodo) => {
         </Control>
         <Control label="Assigned to">
           <ReactSelect
+            id="assignee"
             isClearable
             value={assignee}
             options={users?.map(getUserOption)}

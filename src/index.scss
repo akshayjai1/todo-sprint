@@ -9,10 +9,35 @@ body {
   height: 100vh;
   width: 100vw;
 }
+@mixin inputBorder() {
+  border: 1px solid hsl(0deg 0% 90% / 70%);
+}
 input,
 select {
-  height: 30px;
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid hsl(0deg 0% 90% / 70%);
+  height: 26px;
+  padding: 4px;
+  font-size: 14px;
+  @include inputBorder();
+}
+.app .react-date-picker {
+  padding: 4px;
+  @include inputBorder();
+}
+.app .react-date-picker .react-date-picker__wrapper {
+  border: none;
+}
+
+.react-date-picker__inputGroup__year {
+  width: 40px;
+}
+#priority,
+#assignee {
+  @include inputBorder();
+  [class$='control'] {
+    border: none;
+  }
+}
+
+[class$='control'] {
+  border: none;
 }

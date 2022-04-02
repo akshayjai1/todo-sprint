@@ -1,3 +1,4 @@
+@import '../../shared/color';
 .todoList {
 }
 .header {
@@ -8,4 +9,33 @@
 .title {
   align-items: center;
   display: flex;
+}
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  div {
+    display: flex;
+  }
+}
+@mixin rect($h) {
+  width: $h * 1.5;
+  height: $h;
+  display:flex;
+  place-items: center;
+  place-content: center;
+  cursor: pointer;
+  &:hover {
+    border: 1px solid $gray2;
+  }
+}
+.prevIcon {
+  padding: 4px 10px;
+  @include rect(20px);
+}
+.nextIcon {
+  padding: 4px 10px;
+  @include rect(20px);
+}
+.pagination {
+  padding: 4px 10px;
 }

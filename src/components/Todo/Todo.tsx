@@ -1,18 +1,24 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ReactSelect from 'react-select';
 import DatePicker from 'react-date-picker';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { EPriority, ILabelValue, priorities } from '../../data/priority';
 import { users } from '../../data/users';
 import { Plus } from '../../images/Plus';
-import { add, IUser, update } from '../../shared/todoSlice';
+import {
+  add,
+  IUser,
+  remove,
+  update,
+  toggleStatus,
+} from '../../shared/todoSlice';
 import { Button } from '../Button/Button';
 import { Control } from '../Control/Control';
 import { RowAction } from '../RowAction/RowAction';
 import { UserOption } from '../UserIcon/UserIcon';
 import style from './Todo.module.scss';
-import { todosData } from '../../data/todosData';
+import { RootState } from '../../shared/store';
 interface IpTodo {
   edit?: boolean;
 }
@@ -32,17 +38,26 @@ export const Todo = ({ edit = false }: IpTodo) => {
   const location = useLocation();
   const params = useParams();
   console.log('navigate', location, params);
-  useEffect(() => {
+  const { todos } = useSelector((state: RootState) => state)['todo'];
+  const todo = useMemo(() => {
     if (edit && params?.id) {
-      const todo = todosData.find((todo) => todo.id === params.id);
-      if (todo) {
-        setTodoText(todo.text);
-        setPriority({ label: todo.priority, value: todo.priority });
-        setDueDate(new Date(todo.dueDate));
-        setAssignee(getUserOption(users.find((u) => u.id === todo.assignee))); //TODO:need to handle null case
-      }
+      const todo = todos.find((todo) => todo.id === params.id);
+      return todo;
     }
-  }, []);
+  }, [params.id, edit, todos]);
+  useEffect(() => {
+    if (todo) {
+      setTodoText(todo.text);
+      setPriority({ label: todo.priority, value: todo.priority });
+      setDueDate(new Date(todo.dueDate));
+      setAssignee(getUserOption(users.find((u) => u.id === todo.assignee))); //TODO:need to handle null case
+    } else {
+      alert(
+        `Todo with id ${params.id} was not found, Navigating to Listing page`,
+      );
+      navigate('/all-todos');
+    }
+  }, [params.id, navigate, todo]);
 
   return (
     <div className={style.todo}>
@@ -105,12 +120,12 @@ export const Todo = ({ edit = false }: IpTodo) => {
             let fn = edit ? update : add;
             dispatch(
               fn({
-                id: Date.now() + '',
+                id: edit ? params.id! : Date.now() + '',
                 text: todoText,
                 status: false,
                 assignee: assignee?.value,
                 creator: users[8].id,
-                dueDate: dueDate?.toLocaleDateString() ?? '',
+                dueDate: dueDate?.toDateString() ?? '',
                 priority: priority.label,
               }),
             );
@@ -123,15 +138,21 @@ export const Todo = ({ edit = false }: IpTodo) => {
         <>
           <hr className={style.hr} />
           <RowAction
-            text="Mark this todo complete"
-            actionText="Mark complete"
-            onClick={() => {}}
+            text={`Mark this todo ${todo?.status ? 'in' : ''}complete`}
+            actionText={`Mark ${todo?.status ? 'in' : ''}complete`}
+            onClick={() => {
+              dispatch(toggleStatus(params.id!));
+              navigate('/all-todos');
+            }}
           />
           <hr className={style.hr} />
           <RowAction
             text="Do you want to delete this todo ?"
             actionText="Delete todo"
-            onClick={() => {}}
+            onClick={() => {
+              dispatch(remove(params.id!));
+              navigate('/all-todos');
+            }}
           />
         </>
       )}

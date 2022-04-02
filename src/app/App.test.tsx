@@ -19,7 +19,7 @@ describe('With React Testing Library', () => {
       </Provider>,
     );
 
-    const linkElement = screen.getByText(/To Do App/i);
+    const linkElement = screen.getByText(/Todo/i);
     expect(linkElement).toBeInTheDocument();
   });
 });

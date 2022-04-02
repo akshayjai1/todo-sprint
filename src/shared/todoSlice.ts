@@ -32,21 +32,27 @@ export const todoSlice = createSlice({
     },
     remove: (state, action: PayloadAction<string>) => {
       let index = state.todos.findIndex((todo) => todo.id === action.payload);
-      if (index) {
+      if (index > -1) {
         state.todos.splice(index, 1);
+      }
+    },
+    toggleStatus: (state, action: PayloadAction<string>) => {
+      let index = state.todos.findIndex((todo) => todo.id === action.payload);
+      if (index > -1) {
+        state.todos[index].status = !state.todos[index].status;
       }
     },
     update: (state, action: PayloadAction<ITodo>) => {
       let index = state.todos.findIndex(
         (todo) => todo.id === action.payload.id,
       );
-      if (index) {
+      if (index > -1) {
         state.todos[index] = action.payload;
       }
     },
   },
 });
 
-export const { add, remove, update } = todoSlice.actions;
+export const { add, remove, update, toggleStatus } = todoSlice.actions;
 
 export const todoReducer = todoSlice.reducer;

@@ -1,6 +1,6 @@
 .row {
   display: grid;
-  grid-template-columns: 30px auto 90px 160px 90px 90px 60px;
+  grid-template-columns: 30px auto 90px 90px 160px 90px 90px 60px;
   grid-column-gap: 20px;
   padding: 12px;
   align-items: center;
@@ -22,4 +22,9 @@
   display: flex;
   justify-self: flex-start;
   font-weight: bold;
+}
+.status {
+  font-weight: bold;
+}
+.text {
 }

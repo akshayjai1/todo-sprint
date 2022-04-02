@@ -22,7 +22,7 @@ export const TodoList = () => {
   const navigate = useNavigate();
   const lastPage = useMemo(() => {
     return Math.ceil(todos.length / perPage);
-  }, [perPage, todos.length]);
+  }, [todos.length]);
   const header = (
     <div className={style.header}>
       <div className={style.title}>All Todos</div>

@@ -1,16 +1,14 @@
 import style from './App.module.scss';
 import { Routes, Route, NavLink, useLocation } from 'react-router-dom';
 import { Home } from '../components/Home/Home';
-import { Button } from '../components/Button/Button';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Todo } from '../components/Todo/Todo';
-import { Plus } from '../images/Plus';
 import { UserOption } from '../components/UserIcon/UserIcon';
 import Person from '../images/person.png';
 import { users } from '../data/users';
+import Logo from '../images/logo.png';
 import { TodoList } from '../components/TodoList/TodoList';
 export function App() {
-  const dispatch = useDispatch();
   const location = useLocation();
   const state = useSelector((state) => state);
   console.log(state, 'state');
@@ -18,12 +16,14 @@ export function App() {
   return (
     <div className="app">
       <h1 className={style.header}>
-        <NavLink to="/"> To Do App</NavLink>
+        <NavLink to="/" className={style.logo}>
+          <img src={Logo} alt="logo" /> Todo
+        </NavLink>
         <div className={style.user}>
           <UserOption
             invert
             name={users[8].name}
-            icon={<img src={Person} width="36" height="36" />}
+            icon={<img src={Person} width="36" height="36" alt="person" />}
           />
         </div>
       </h1>

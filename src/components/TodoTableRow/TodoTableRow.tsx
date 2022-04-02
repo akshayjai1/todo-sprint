@@ -17,7 +17,8 @@ export const TodoTableRow = ({ todo }: IpTodoTableRow) => {
       <div className={style.a}>
         <Square />
       </div>
-      <div className={style.a}>{todo.text}</div>
+      <div className={style.text}>{todo.text}</div>
+      <div className={style.status}>{todo.status ? "Done": "Pending"}</div>
       <div className={`${style.priority} ${getPriorityClass(todo.priority)}`}>
         {todo.priority}
       </div>

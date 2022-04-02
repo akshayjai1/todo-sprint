@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { NextIcon } from '../../images/NextIcon';
@@ -20,6 +20,9 @@ export const TodoList = () => {
   });
   const { todos } = useSelector((state: RootState) => state)['todo'];
   const navigate = useNavigate();
+  const lastPage = useMemo(() => {
+    return Math.ceil(todos.length / perPage);
+  }, [perPage, todos.length]);
   const header = (
     <div className={style.header}>
       <div className={style.title}>All Todos</div>
@@ -34,12 +37,12 @@ export const TodoList = () => {
   );
   const changePage = (event: any) => {
     if (event.currentTarget.className.includes('prev') && page.current !== 1) {
-      setPage((p) => getUpatedPageData(p, -1));
+      setPage((p) => getUpdatedPageData(p, -1));
     } else if (
       event.currentTarget.className.includes('next') &&
-      page.current !== Math.ceil(todos.length / perPage)
+      page.current !== lastPage
     ) {
-      setPage((p) => getUpatedPageData(p, 1));
+      setPage((p) => getUpdatedPageData(p, 1));
     }
   };
   return (
@@ -52,13 +55,21 @@ export const TodoList = () => {
       </div>
       <div className={style.footer}>
         <div>
-          <div className={style.prevIcon} onClick={changePage}>
+          <div
+            className={`${style.prevIcon} ${
+              page.current === 1 ? 'disabled' : ''
+            }`}
+            onClick={changePage}>
             <PrevIcon />
           </div>
           <div className={style.pagination}>
-            Showing {page.firstIndex} to {page.lastIndex} of {todos.length}
+            Showing {page.firstIndex + 1} to {page.lastIndex} of {todos.length}
           </div>
-          <div className={style.nextIcon} onClick={changePage}>
+          <div
+            className={`${style.nextIcon} ${
+              page.current === lastPage ? 'disabled' : ''
+            }`}
+            onClick={changePage}>
             <NextIcon />
           </div>
         </div>
@@ -67,7 +78,7 @@ export const TodoList = () => {
   );
 };
 
-const getUpatedPageData = (
+const getUpdatedPageData = (
   page: { current: number; firstIndex: number; lastIndex: number },
   factor: number,
 ) => {

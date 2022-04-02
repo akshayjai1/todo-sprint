@@ -1,5 +1,6 @@
 @import '../../shared/color';
 .todoList {
+  height: 500px;
 }
 .header {
   display: flex;
@@ -16,11 +17,12 @@
   div {
     display: flex;
   }
+  margin: 20px;
 }
 @mixin rect($h) {
   width: $h * 1.5;
   height: $h;
-  display:flex;
+  display: flex;
   place-items: center;
   place-content: center;
   cursor: pointer;

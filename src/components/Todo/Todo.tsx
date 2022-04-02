@@ -19,10 +19,15 @@ import { RowAction } from '../RowAction/RowAction';
 import { UserOption } from '../UserIcon/UserIcon';
 import style from './Todo.module.scss';
 import { RootState } from '../../shared/store';
+import { Modal } from '../Modal/Modal';
+import { hideModal, showModal } from '../../shared/modalSlice';
 interface IpTodo {
   edit?: boolean;
 }
 export const Todo = ({ edit = false }: IpTodo) => {
+  const {
+    modal: { show },
+  } = useSelector((state: RootState) => state)['modal'];
   const [todoText, setTodoText] = useState('');
   const [priority, setPriority] = useState<ILabelValue<EPriority>>({
     label: EPriority.Low,
@@ -61,6 +66,16 @@ export const Todo = ({ edit = false }: IpTodo) => {
 
   return (
     <div className={style.todo}>
+      {show && (
+        <Modal
+          modalContent="Are you sure you want to delete this todo? This action is irreversible."
+          onApprove={() => {
+            dispatch(hideModal());
+            dispatch(remove(params.id!));
+            navigate('/all-todos');
+          }}
+        />
+      )}
       <h2 className={style.title}>{edit ? 'Edit' : 'Add'} Todo</h2>
       <div className={style.controlContainer}>
         <Control label="Todo">
@@ -150,8 +165,7 @@ export const Todo = ({ edit = false }: IpTodo) => {
             text="Do you want to delete this todo ?"
             actionText="Delete todo"
             onClick={() => {
-              dispatch(remove(params.id!));
-              navigate('/all-todos');
+              dispatch(showModal());
             }}
           />
         </>
@@ -161,9 +175,6 @@ export const Todo = ({ edit = false }: IpTodo) => {
 };
 
 const getUserOption = (user?: IUser) => {
-  // if (!user) {
-  //   return null;
-  // }
   return {
     label: <UserOption name={user?.name ?? ''} />,
     value: user?.id ?? '',

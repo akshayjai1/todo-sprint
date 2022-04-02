@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 export interface ModalState {
   modal: {
     show: boolean;
@@ -15,15 +15,18 @@ export const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    show: (state) => {
+    toggleModal(state) {
+      state.modal.show = !state.modal.show;
+    },
+    showModal: (state) => {
       state.modal.show = true;
     },
-    hide: (state) => {
+    hideModal: (state) => {
       state.modal.show = false;
     },
   },
 });
 
-export const { show, hide } = modalSlice.actions;
+export const { showModal, hideModal, toggleModal } = modalSlice.actions;
 
 export const modalReducer = modalSlice.reducer;

@@ -15,7 +15,9 @@ export const Button = ({
 }: IpButton) => {
   return (
     <div
-      className={`${buttonClass} ${grayish ? style.grayBtn : style.purpleBtn} ${style.btn}`}
+      className={`${buttonClass} ${grayish ? style.grayBtn : style.purpleBtn} ${
+        style.btn
+      }`}
       onClick={onClick}>
       {icon ? <span className={style.btnIcon}>{icon}</span> : null}
       <span>{text}</span>

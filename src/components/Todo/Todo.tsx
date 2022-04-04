@@ -60,10 +60,12 @@ export const Todo = ({ edit = false }: IpTodo) => {
       setDueDate(new Date(todo.dueDate));
       setAssignee(getUserOption(users.find((u) => u.id === todo.assignee))); //TODO:need to handle null case
     } else {
-      alert(
-        `Todo with id ${params.id} was not found, Navigating to Listing page`,
-      );
-      navigate('/all-todos');
+      if (edit) {
+        alert(
+          `Todo with id ${params.id} was not found, Navigating to Listing page`,
+        );
+        navigate('/all-todos');
+      }
     }
   }, [params.id, navigate, todo]);
 

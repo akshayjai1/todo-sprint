@@ -11,7 +11,6 @@ interface IpTodoRow {
 
 export const TodoRow = ({ todo }: IpTodoRow) => {
   const name: string = getName(todo?.assignee ?? '', users);
-  console.log('todo', todo);
   return (
     <div className={style.todoRow}>
       <div className={style.check}>

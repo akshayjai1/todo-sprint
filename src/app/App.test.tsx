@@ -5,7 +5,10 @@ import configureStore from 'redux-mock-store';
 import { App } from './App';
 
 describe('With React Testing Library', () => {
-  const initialState = { output: 10 };
+  const initialState = {
+    todo: { todos: [] },
+    modal: { modal: { show: false } },
+  };
   const mockStore = configureStore();
   let store;
 
@@ -19,7 +22,7 @@ describe('With React Testing Library', () => {
       </Provider>,
     );
 
-    const linkElement = screen.getByText(/Todo/i);
+    const linkElement = screen.getByText('Todo');
     expect(linkElement).toBeInTheDocument();
   });
 });

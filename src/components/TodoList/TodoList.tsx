@@ -82,7 +82,6 @@ const getUpdatedPageData = (
   page: { current: number; firstIndex: number; lastIndex: number },
   factor: number,
 ) => {
-  console.log({ page, factor });
   return {
     current: page.current + (factor > 0 ? 1 : -1),
     firstIndex: page.firstIndex + factor * perPage,

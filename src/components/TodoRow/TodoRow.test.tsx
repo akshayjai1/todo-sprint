@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import {EPriority} from '../../data/priority';
+import { EPriority } from '../../data/priority';
 
 import { TodoRow } from './TodoRow';
 
-test('renders label', () => {
+test('renders todo text', () => {
   render(
     <TodoRow
       todo={{
@@ -16,10 +16,10 @@ test('renders label', () => {
         dueDate: '',
       }}></TodoRow>,
   );
-  const linkElement = screen.getByText(/test/i);
+  const linkElement = screen.getByText(/Dummy todo/i);
   expect(linkElement).toBeInTheDocument();
 });
-test('renders Children', () => {
+test('renders priority', () => {
   render(
     <TodoRow
       todo={{
@@ -32,6 +32,6 @@ test('renders Children', () => {
         dueDate: '',
       }}></TodoRow>,
   );
-  const linkElement = screen.getByText(/Children/i);
+  const linkElement = screen.getByText(/Low/i);
   expect(linkElement).toBeInTheDocument();
 });

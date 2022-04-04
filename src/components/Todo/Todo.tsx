@@ -27,7 +27,9 @@ interface IpTodo {
 export const Todo = ({ edit = false }: IpTodo) => {
   const {
     modal: { show },
-  } = useSelector((state: RootState) => state)['modal'];
+  } = useSelector((state: RootState) => state)['modal'] ?? {
+    modal: { show: false },
+  };
   const [todoText, setTodoText] = useState('');
   const [priority, setPriority] = useState<ILabelValue<EPriority>>({
     label: EPriority.Low,
@@ -42,8 +44,9 @@ export const Todo = ({ edit = false }: IpTodo) => {
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
-  console.log('navigate', location, params);
-  const { todos } = useSelector((state: RootState) => state)['todo'];
+  const { todos } = useSelector((state: RootState) => state)['todo'] ?? {
+    todos: [],
+  };
   const todo = useMemo(() => {
     if (edit && params?.id) {
       const todo = todos.find((todo) => todo.id === params.id);
@@ -93,7 +96,6 @@ export const Todo = ({ edit = false }: IpTodo) => {
             isClearable={false}
             value={priority}
             onChange={(val) => {
-              console.log('priority change', val);
               setPriority(val!);
             }}
             options={priorities.map((p) => ({ label: p, value: p }))}

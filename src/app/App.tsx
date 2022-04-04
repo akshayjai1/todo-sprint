@@ -1,7 +1,6 @@
 import style from './App.module.scss';
-import { Routes, Route, NavLink, useLocation } from 'react-router-dom';
+import { Routes, Route, NavLink } from 'react-router-dom';
 import { Home } from '../components/Home/Home';
-import { useSelector } from 'react-redux';
 import { Todo } from '../components/Todo/Todo';
 import { UserOption } from '../components/UserIcon/UserIcon';
 import Person from '../images/person.png';
@@ -9,10 +8,6 @@ import { users } from '../data/users';
 import Logo from '../images/logo.png';
 import { TodoList } from '../components/TodoList/TodoList';
 export function App() {
-  const location = useLocation();
-  const state = useSelector((state) => state);
-  console.log(state, 'state');
-  console.log('o', location);
   return (
     <div className="app">
       <h1 className={style.header}>
@@ -27,7 +22,6 @@ export function App() {
           />
         </div>
       </h1>
-
       <div></div>
       <Routes>
         <Route path="/reminders" element={<Home />} />

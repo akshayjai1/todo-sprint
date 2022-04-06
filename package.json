@@ -2,8 +2,10 @@
   "name": "todo-sprinto",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://akshayjai1.github.io/todo-sprint",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.0",
+    "gh-pages": "^3.2.3",
     "light-date": "^1.2.0",
     "react": "^17.0.2",
     "react-date-picker": "^8.4.0",
@@ -20,7 +22,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy":"npm run build",
+    "deploy":"gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

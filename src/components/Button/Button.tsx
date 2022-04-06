@@ -20,7 +20,7 @@ export const Button = ({
       }`}
       onClick={onClick}>
       {icon ? <span className={style.btnIcon}>{icon}</span> : null}
-      <span>{text}</span>
+      {text}
     </div>
   );
 };

@@ -85,6 +85,7 @@ export const Todo = ({ edit = false }: IpTodo) => {
       <div className={style.controlContainer}>
         <Control label="Todo">
           <input
+            name="todo-text-input"
             type="text"
             placeholder="Type here"
             value={todoText}
@@ -107,6 +108,7 @@ export const Todo = ({ edit = false }: IpTodo) => {
           <DatePicker
             // placeholder="Today"
             value={dueDate}
+            name="todo-due-date"
             onChange={(e: any) => {
               setDueDate(e);
             }}
@@ -134,6 +136,7 @@ export const Todo = ({ edit = false }: IpTodo) => {
           }}
         />
         <Button
+          id="todo-main-action-button"
           text={edit ? 'Save Change' : 'Add'}
           onClick={() => {
             let fn = edit ? update : add;
